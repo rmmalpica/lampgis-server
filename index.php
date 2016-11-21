@@ -61,6 +61,7 @@ if($command=="add_raster_layer_block")
 	$width = $_POST["width"];
 	$height = $_POST["height"];	
 	$extent = $_POST["extent"];
+	$level = $_POST["level"];
 	
 	$data_file_name = $_FILES['dataFile']['name'];
 	$data_file_size =$_FILES['dataFile']['size'];
@@ -71,9 +72,9 @@ if($command=="add_raster_layer_block")
 	$image_file_tmp =$_FILES['imageFile']['tmp_name'];
 	
 	$query = "INSERT INTO RASTER_LAYER_BLOCK (xblock, yblock, xmin, ymin, xmax, ymax, width, height,
-	 extent, raster_layer_id) VALUES
+	 extent, level, raster_layer_id) VALUES
 	('$xblock', '$yblock', $xmin, $ymin, $xmax, $ymax, $width, $height,
-	 GeomFromText('$extent'), $id)";
+	 GeomFromText('$extent'), $level, $id)";
 	if($mysqli->query($query) == TRUE)
 	{
 		$blockid = $mysqli->insert_id;
